@@ -26,10 +26,17 @@ const fetchBook = () => {
         bookObj.forEach(book => {
 
             const col = document.createElement("div");
-            col.className = "col";  
+            col.className = "col mb-4"; 
+            const card = document.createElement("div");
+            card.className = "card border border-primary p-3";   
+
             const img = document.createElement("img");
-            img.style.width = "100%"
+            img.className = "card-img-top";
             img.src = book.img;
+
+            const cardBody = document.createElement("div");
+                cardBody.className = "card-body";
+
             const title = document.createElement("p");
             title.innerHTML = book.title;
             const price = document.createElement("p");
@@ -38,12 +45,19 @@ const fetchBook = () => {
 
 
             const delBut = document.createElement("button");
+            delBut.className = "btn btn-danger m-1";
             delBut.innerHTML = "Scarta";
 
             delBut.onclick = () => col.remove();
 
             const addToCart = document.createElement("button");
+            addToCart.className = "btn btn-success m-1";
             addToCart.innerHTML = "Compra ora";
+
+            cardBody.appendChild(title);
+                cardBody.appendChild(price);
+                cardBody.appendChild(delBut);
+                cardBody.appendChild(addToCart);
 
             addToCart.onclick = () => {
                 const cartBook = document.createElement("li");
@@ -67,12 +81,10 @@ const fetchBook = () => {
 
 
 
-            col.appendChild(img);
-            col.appendChild(title);
-            col.appendChild(price);
-            col.appendChild(delBut);
-            col.appendChild(addToCart);
-            row.appendChild(col);
+            card.appendChild(img);
+                card.appendChild(cardBody);
+                col.appendChild(card); 
+                row.appendChild(col);
 
 
             
